@@ -38,13 +38,14 @@
       
     const balanceOfGdollarBridge = block > 11238178
       ? await sdk.api.abi.multiCall({
-      block,
-      calls: _.map(tokenAddresses, (token) => ({
-        target: token,
-        params: gDollarBridgeContract
-      })),
-      abi: 'erc20:balanceOf'
-    });
+        block,
+        calls: _.map(tokenAddresses, (token) => ({
+          target: token,
+          params: gDollarBridgeContract
+        })),
+        abi: 'erc20:balanceOf'
+      })
+      : { output: [] };
     
     const output = [
       ...balanceOfAmbBridge.output,
